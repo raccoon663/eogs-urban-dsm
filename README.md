@@ -73,7 +73,7 @@ Machine-readable results are in [results/metrics.csv](results/metrics.csv), [res
 
 WorldView-3 imagery and restricted DFC2019/US3D data are excluded. [data/README.md](data/README.md) links the official source and documents the expected local layout.
 
-The [MIT License](LICENSE) applies only to material authored for this repository, including its wrappers, analysis scripts, documentation, and presentation assets. It does not license EOGS, its dependencies, or any dataset. EOGS is obtained separately from the [original repository](https://github.com/mezzelfo/EOGS) and remains subject to its authors' original terms; at the time of this audit, that repository did not declare an explicit GitHub license.
+The [MIT License](LICENSE) applies only to material authored for this repository, including its wrappers, analysis scripts, documentation, and presentation assets. It does not license EOGS, its dependencies, or any dataset. EOGS is obtained separately from the [original repository](https://github.com/mezzelfo/EOGS) and remains subject to its authors' original terms; at the time of this audit, that repository did not declare an explicit GitHub license. See [NOTICE.md](NOTICE.md) for the complete scope statement.
 
 ## Citation
 
