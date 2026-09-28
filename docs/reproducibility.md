@@ -12,7 +12,7 @@
 - Training: 5,000 iterations, seed 0, SH degree 0
 - DSM: 0.5 m, 512 × 512, EPSG:32617
 
-The patch replaces a shell copy with `shutil.copy2` and expands fixed/test backgrounds to the five EOGS channels. It is inherited by both machines and does not introduce a new reconstruction method.
+The patch replaces a shell copy with `shutil.copy2` and expands fixed/test backgrounds to the five EOGS channels. It is inherited by both machines and does not introduce a new reconstruction method. Because upstream EOGS does not currently declare an explicit repository license, this repository does not redistribute its source files; all upstream entry points are called through `EOGS_ROOT`.
 
 ## Environment
 
@@ -47,7 +47,7 @@ PyTorch CUDA wheels must match the target driver and toolkit. If a different sup
 
 ```bash
 python scripts/prepare_data.py --scene JAX_004 --data-dir data
-python scripts/dataset_creation/to_affine.py --scene_name JAX_004
+python "$EOGS_ROOT/scripts/dataset_creation/to_affine.py" --scene_name JAX_004
 python scripts/select_views.py --root .
 ```
 
@@ -59,7 +59,9 @@ python scripts/select_views.py --root .
 EOGS_ROOT="$EOGS_ROOT" bash scripts/run_ablation.sh
 ```
 
-The launcher runs 4, 8, and 9 views with the saved settings, records training resource use, renders DSMs, applies the official `scripts/eval/eval_dsm.py`/`dsmr` registration, exports GeoTIFFs, verifies the grid, and evaluates overall plus building/ground/vegetation metrics.
+The launcher runs 4, 8, and 9 views with the saved settings, records training resource use, renders DSMs, invokes the official `$EOGS_ROOT/scripts/eval/eval_dsm.py` and adjacent `dsmr.py` registration code from the checked-out upstream repository, exports GeoTIFFs, verifies the grid, and evaluates overall plus building/ground/vegetation metrics.
+
+The EOGS checkout is therefore a required external dependency. The repository-authored launcher, data-selection tools, DSM export/alignment wrapper, strict evaluator, configuration records, and result summaries remain in this repository.
 
 The actual RTX 5080 wall times for initialization, training, and save were 267.890 s (4 views), 215.282 s (8), and 213.834 s (9). Peak PyTorch allocated memory was 901.131, 700.156, and 675.853 MiB respectively. These measurements exclude preprocessing, separate rendering, and evaluation.
 

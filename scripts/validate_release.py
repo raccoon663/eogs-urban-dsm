@@ -11,6 +11,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PROHIBITED_DIRS = {".git", "__pycache__", "wandb", "checkpoints", ".deps", "output"}
 PROHIBITED_SUFFIXES = {".tif", ".tiff", ".iio", ".las", ".laz", ".ckpt", ".pth", ".pt", ".zip"}
+UPSTREAM_SOURCE_PATHS = {
+    "scripts/dataset_creation/to_affine.py",
+    "scripts/eval/eval_dsm.py",
+    "scripts/eval/dsmr.py",
+}
 
 
 def close(a: str | float, b: float, tolerance: float = 1e-9) -> bool:
@@ -43,6 +48,9 @@ def main() -> None:
             failures.append(f"broken README link: {target}")
 
     public_files = [path for path in ROOT.rglob("*") if path.is_file() and ".git" not in path.parts]
+    public_relpaths = {path.relative_to(ROOT).as_posix() for path in public_files}
+    for copied_path in sorted(UPSTREAM_SOURCE_PATHS & public_relpaths):
+        failures.append(f"copied upstream source file: {copied_path}")
     for path in public_files:
         rel = path.relative_to(ROOT)
         if any(part in PROHIBITED_DIRS for part in rel.parts):
@@ -53,9 +61,12 @@ def main() -> None:
             failures.append(f"file exceeds 10 MiB: {rel.as_posix()}")
 
     absolute_pattern = re.compile(r"(?:/opt/|/mnt/|(?<![A-Za-z])[A-Za-z]:[\\/]|/Users/)")
-    for path in (ROOT / "scripts").rglob("*"):
-        if path.is_file() and path.resolve() != Path(__file__).resolve() and absolute_pattern.search(path.read_text(errors="ignore")):
-            failures.append(f"absolute machine path in script: {path.relative_to(ROOT).as_posix()}")
+    text_suffixes = {".cff", ".csv", ".json", ".md", ".patch", ".py", ".sh", ".txt", ".yaml", ".yml"}
+    for path in public_files:
+        if path.suffix.lower() not in text_suffixes or path.resolve() == Path(__file__).resolve():
+            continue
+        if absolute_pattern.search(path.read_text(errors="ignore")):
+            failures.append(f"absolute machine path: {path.relative_to(ROOT).as_posix()}")
 
     if failures:
         raise SystemExit("Release validation failed:\n- " + "\n- ".join(sorted(set(failures))))
@@ -68,7 +79,8 @@ def main() -> None:
         "common_valid_pixels": common["common_valid_pixels"],
         "restricted_or_large_files": 0,
         "broken_readme_links": 0,
-        "absolute_machine_paths_in_scripts": 0,
+        "absolute_machine_paths": 0,
+        "copied_upstream_source_files": 0,
     }, indent=2))
 
 

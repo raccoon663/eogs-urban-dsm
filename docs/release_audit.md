@@ -9,6 +9,14 @@ Audit date: 2026-09-27
 - Every RTX 5080 payload file matched its packaged `CHECKSUMS_SHA256.txt` entry.
 - The three common-mask MAE/RMSE values were independently recomputed from the packaged error GeoTIFFs and matched `common_mask_metrics.json` within `1e-6` m.
 
+## Licensing and provenance cleanup
+
+- The upstream [mezzelfo/EOGS repository](https://github.com/mezzelfo/EOGS) did not declare an explicit GitHub license at audit time.
+- Full copies of upstream `scripts/dataset_creation/to_affine.py`, `scripts/eval/eval_dsm.py`, and `scripts/eval/dsmr.py` were removed.
+- Reproduction now obtains those files from the exact external EOGS checkout through `EOGS_ROOT`.
+- An exact SHA-256 comparison found no remaining repository file identical to a file in the archived upstream `src` snapshot. `code_changes.patch` is intentionally retained as the minimal, reviewable record of the two modifications used by the experiments.
+- The MIT license is scoped to repository-authored wrappers, analysis, documentation, and presentation material. It does not apply to EOGS, dependencies, or datasets.
+
 ## Compatibility conclusion
 
 Both machines used `JAX_004`, the same transferred EOGS source snapshot identified as upstream commit `cca973e7ea512091b52c8ff741c80ddade5793d2`, the inherited two-file patch, nine training/two held-out views for the full run, resolution scale 1, 5,000 iterations, SH degree 0, the same 512 × 512 reference grid, and byte-identical registration/evaluation scripts.
@@ -25,7 +33,7 @@ The GPU, driver, PyTorch, and CUDA versions differ. Cross-device bitwise determi
 - absence of TIFF/IIO/LAS/LAZ, checkpoints, ZIPs, caches, and files above 10 MiB;
 - final payload size and file count.
 
-The final scan passed with 49 files before this audit note was added, a 4,226,201-byte payload, and no prohibited data. The original WorldView-3 imagery, RPC source metadata, reference/label rasters, model outputs, checkpoints, full environments, and dataset archives are excluded.
+The original WorldView-3 imagery, RPC source metadata, reference/label rasters, model outputs, checkpoints, full environments, dataset archives, and copied EOGS source files are excluded. The final file count and payload size are reported by `scripts/validate_release.py` at audit time.
 
 ## Material removed from the publishable tree
 
@@ -35,6 +43,7 @@ The final scan passed with 49 files before this audit note was added, a 4,226,20
 - original imagery, RPC JSON, reference DSM, and labels: redistribution rights were not assumed;
 - checkpoints, compiled extensions, build directories, caches, logs, and Conda directories: generated or machine-specific;
 - duplicate and debugging figures: four publication-facing figures are retained;
-- original machine-specific launch records: normalized configs and a portable launcher are retained, while scrubbed provenance JSON preserves measured resources.
+- original machine-specific launch records: normalized configs and a portable launcher are retained, while scrubbed provenance JSON preserves measured resources;
+- copied `to_affine.py`, `eval_dsm.py`, and `dsmr.py`: removed because the upstream repository does not declare an explicit GitHub license; the launcher calls these files from `EOGS_ROOT` instead.
 
 Removed material was moved to a sibling local archive during preparation so it can be recovered; it is outside the public repository.

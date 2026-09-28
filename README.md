@@ -8,7 +8,7 @@ A controlled evaluation of Earth Observation Gaussian Splatting on multi-view Wo
 
 **How does the number of multi-view satellite observations affect the geometric accuracy of EOGS-based urban DSM reconstruction?**
 
-We evaluate [EOGS](https://github.com/mezzelfo/EOGS) on `JAX_004`, a 256 m × 256 m Jacksonville, Florida scene from the DFC2019/US3D release. The scene contains nine training views and two held-out views. All experiments use 5,000 iterations, spherical-harmonic degree 0, native image resolution, a 0.5 m DSM grid, and the same LiDAR-derived reference.
+We evaluate [EOGS](https://github.com/mezzelfo/EOGS) from the CVPR 2025 paper [*Gaussian Splatting for Efficient Satellite Image Photogrammetry*](https://openaccess.thecvf.com/content/CVPR2025/papers/Aira_Gaussian_Splatting_for_Efficient_Satellite_Image_Photogrammetry_CVPR_2025_paper.pdf) on `JAX_004`, a 256 m × 256 m Jacksonville, Florida scene from the DFC2019/US3D release. The scene contains nine training views and two held-out views. All experiments use 5,000 iterations, spherical-harmonic degree 0, native image resolution, a 0.5 m DSM grid, and the same LiDAR-derived reference.
 
 ## Key results
 
@@ -52,7 +52,7 @@ The software stacks differ: the RTX 4060 used PyTorch 2.1.2/CUDA 11.8, while the
 
 ## Reproduce
 
-The repository does not redistribute source imagery, reference/label rasters, checkpoints, or a duplicate EOGS checkout. Follow [the reproducibility guide](docs/reproducibility.md) to:
+The repository does not redistribute source imagery, reference/label rasters, checkpoints, or EOGS source files. Follow [the reproducibility guide](docs/reproducibility.md) to:
 
 1. obtain the official data;
 2. check out the exact EOGS commit and apply the patch;
@@ -71,8 +71,10 @@ Machine-readable results are in [results/metrics.csv](results/metrics.csv), [res
 
 ## Data and licensing
 
-WorldView-3 imagery and restricted DFC2019/US3D data are excluded. [data/README.md](data/README.md) links the official source and documents the expected local layout. Repository-authored files are released under the [MIT License](LICENSE); EOGS and datasets retain their own licenses and terms.
+WorldView-3 imagery and restricted DFC2019/US3D data are excluded. [data/README.md](data/README.md) links the official source and documents the expected local layout.
+
+The [MIT License](LICENSE) applies only to material authored for this repository, including its wrappers, analysis scripts, documentation, and presentation assets. It does not license EOGS, its dependencies, or any dataset. EOGS is obtained separately from the [original repository](https://github.com/mezzelfo/EOGS) and remains subject to its authors' original terms; at the time of this audit, that repository did not declare an explicit GitHub license.
 
 ## Citation
 
-Use [CITATION.cff](CITATION.cff) for this repository and cite the original EOGS work when using its method or code.
+Use [CITATION.cff](CITATION.cff) for this repository and cite the [original EOGS paper](https://openaccess.thecvf.com/content/CVPR2025/papers/Aira_Gaussian_Splatting_for_Efficient_Satellite_Image_Photogrammetry_CVPR_2025_paper.pdf) and [repository](https://github.com/mezzelfo/EOGS) when using its method or code.

@@ -1,6 +1,13 @@
+License scope
+
+This license applies only to material authored for the eogs-urban-dsm
+repository. It does not grant rights to EOGS, its third-party dependencies,
+WorldView-3 imagery, DFC2019/US3D data, or other externally sourced material.
+EOGS must be obtained separately and remains subject to its authors' terms.
+
 MIT License
 
-Copyright (c) 2026 EOGS Urban DSM contributors
+Copyright (c) 2026 raccoon663
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

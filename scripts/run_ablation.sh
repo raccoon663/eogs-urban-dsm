@@ -32,7 +32,7 @@ for label in 4 8 full; do
 
   dsm="$(find "$model/test_opNone/ours_5000/dsm" -maxdepth 1 -type f | sort -V | tail -n 1)"
   cd "$research_root"
-  python scripts/eval/eval_dsm.py \
+  python "$eogs_root/scripts/eval/eval_dsm.py" \
     --pred-dsm-path "$dsm" --gt-dir data/truth/JAX_004 \
     --out-dir "$model" --aoi-id JAX_004 \
     > "$log_dir/${display}_registration.log" 2>&1
