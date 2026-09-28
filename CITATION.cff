@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it and the original EOGS paper."
+title: "View-Coverage Sensitivity of Earth Observation Gaussian Splatting for Urban DSM Reconstruction"
+type: software
+version: 1.0.0
+date-released: 2026-09-27
+authors:
+  - name: "EOGS Urban DSM contributors"
+license: MIT
+keywords:
+  - earth observation
+  - Gaussian splatting
+  - digital surface model
+  - satellite imagery
+  - multi-view reconstruction

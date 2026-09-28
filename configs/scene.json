@@ -1,0 +1,25 @@
+{
+  "scene": "JAX_004",
+  "study_area": "Jacksonville, Florida, USA",
+  "center_lat_lon": [
+    30.3578,
+    -81.7065
+  ],
+  "dataset": "EOGS dataset_v01 / DFC2019 / US3D",
+  "train_views": 9,
+  "heldout_views": 2,
+  "reference_shape": [
+    512,
+    512
+  ],
+  "pixel_size_m": 0.5,
+  "aoi_size_m": [
+    256,
+    256
+  ],
+  "crs": "EPSG:32617",
+  "vertical_datum": "UNKNOWN / NOT YET VERIFIED",
+  "reference_path": "<RESEARCH_ROOT>/data/truth/JAX_004/JAX_004_DSM.tif",
+  "data_source": "https://github.com/mezzelfo/EOGS/releases/download/dataset_v01/data.zip"
+}
+

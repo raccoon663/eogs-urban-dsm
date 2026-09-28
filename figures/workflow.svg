@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="260" viewBox="0 0 1400 260" role="img" aria-labelledby="title desc">
+  <title id="title">EOGS urban DSM evaluation workflow</title>
+  <desc id="desc">Multi-view WorldView-3 images pass through affine camera approximation, EOGS, DSM rendering, registration to LiDAR reference, and evaluation.</desc>
+  <defs>
+    <style>.box{fill:#f7fafc;stroke:#334155;stroke-width:2;rx:14}.t{font:600 20px system-ui,sans-serif;fill:#0f172a;text-anchor:middle}.s{font:15px system-ui,sans-serif;fill:#475569;text-anchor:middle}.a{stroke:#64748b;stroke-width:3;fill:none;marker-end:url(#m)}</style>
+    <marker id="m" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#64748b"/></marker>
+  </defs>
+  <rect width="1400" height="260" fill="white"/>
+  <g transform="translate(30 70)"><rect class="box" width="190" height="110"/><text class="t" x="95" y="44">WorldView-3</text><text class="s" x="95" y="72">4 / 8 / 9 views</text></g>
+  <path class="a" d="M225 125 H270"/>
+  <g transform="translate(275 70)"><rect class="box" width="190" height="110"/><text class="t" x="95" y="44">RPC → affine</text><text class="s" x="95" y="72">fixed camera frame</text></g>
+  <path class="a" d="M470 125 H515"/>
+  <g transform="translate(520 70)"><rect class="box" width="190" height="110"/><text class="t" x="95" y="44">EOGS</text><text class="s" x="95" y="72">5,000 iterations</text></g>
+  <path class="a" d="M715 125 H760"/>
+  <g transform="translate(765 70)"><rect class="box" width="190" height="110"/><text class="t" x="95" y="44">DSM render</text><text class="s" x="95" y="72">0.5 m grid</text></g>
+  <path class="a" d="M960 125 H1005"/>
+  <g transform="translate(1010 70)"><rect class="box" width="190" height="110"/><text class="t" x="95" y="44">Registration</text><text class="s" x="95" y="72">LiDAR reference</text></g>
+  <path class="a" d="M1205 125 H1250"/>
+  <g transform="translate(1255 70)"><rect class="box" width="115" height="110"/><text class="t" x="57.5" y="44">Metrics</text><text class="s" x="57.5" y="72">surface</text><text class="s" x="57.5" y="92">errors</text></g>
+</svg>

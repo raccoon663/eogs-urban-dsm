@@ -1,0 +1,37 @@
+Python 3.10.21
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2025 NVIDIA Corporation
+Built on Fri_Feb_21_20:23:50_PST_2025
+Cuda compilation tools, release 12.8, V12.8.93
+Build cuda_12.8.r12.8/compiler.35583870_0
+gcc-11 (Ubuntu 11.5.0-1ubuntu1~24.04.1) 11.5.0
+Copyright (C) 2021 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+PRETTY_NAME="Ubuntu 24.04.5 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.5 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
+               total        used        free      shared  buff/cache   available
+Mem:            22Gi       2.4Gi        15Gi        85Mi       5.2Gi        20Gi
+Swap:          6.0Gi          0B       6.0Gi
+
+HOST HARDWARE (measured at packaging)
+{
+  "physical_ram_query_success": true,
+  "physical_ram_kib": 50331648,
+  "physical_ram_gib": 48,
+  "cpu": "AMD Ryzen 9 9950X3D 16-Core Processor          ",
+  "os": "Microsoft Windows 10.0.26200"
+}
+GPU: RTX 5080; 16303 MiB VRAM; driver 616.56. PyTorch 2.7.1+cu128; torchvision 0.22.1+cu128.

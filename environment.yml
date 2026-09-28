@@ -1,0 +1,16 @@
+name: eogs-jax004
+channels:
+  - conda-forge
+  - nvidia
+dependencies:
+  - python=3.10.21
+  - pip
+  - setuptools=69.5.1
+  - numpy=1.26.4
+  - cuda-nvcc=12.8
+  - cuda-cudart-dev=12.8
+  - cuda-cccl=12.8
+  - ninja
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu128
+      - -r requirements.txt

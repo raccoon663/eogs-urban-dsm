@@ -1,0 +1,40 @@
+--- a/scripts/dataset_creation/to_affine.py
++++ b/scripts/dataset_creation/to_affine.py
+@@ -1,4 +1,5 @@
+ import os
++import shutil
+ from glob import glob
+ import json
+ import tyro
+@@ -289,8 +290,8 @@
+     with open(f"{DATASET_DESTINATION}/affine_models.json", "w") as f:
+         json.dump(metadatas, f, indent=4)
+     # Copy also the test.txt and train.txt files
+-    os.system(f"cp {SCENE_METADATA}/test.txt {DATASET_DESTINATION}")
+-    os.system(f"cp {SCENE_METADATA}/train.txt {DATASET_DESTINATION}")
++    shutil.copy2(os.path.join(SCENE_METADATA, "test.txt"), DATASET_DESTINATION)
++    shutil.copy2(os.path.join(SCENE_METADATA, "train.txt"), DATASET_DESTINATION)
+ 
+ 
+ if __name__ == "__main__":
+--- a/src/gaussiansplatting/train.py
++++ b/src/gaussiansplatting/train.py
+@@ -118,7 +118,8 @@
+         (model_params, first_iter) = torch.load(checkpoint)
+         gaussians.restore(model_params, opt)
+ 
+-    bg_color = [1, 1, 1, 1] if dataset.white_background else [0, 0, 0, 0]
++    # EOGS rasterizes RGB, altitude, and accumulated opacity (5 channels).
++    bg_color = [1, 1, 1, 1, 0] if dataset.white_background else [0, 0, 0, 0, 0]
+     background = torch.tensor(bg_color, dtype=torch.float32, device="cuda")
+ 
+     iter_start = torch.cuda.Event(enable_timing = True)
+@@ -441,7 +442,7 @@
+                         gaussians.optimizer.state[param]['exp_avg_sq'].masked_fill_(mask, 0.0)
+ 
+             if iteration in testing_iterations:
+-                test_background = torch.tensor([1.0, 0.0, 1.0, -100.0], dtype=torch.float32, device="cuda")
++                test_background = torch.tensor([1.0, 0.0, 1.0, -100.0, 0.0], dtype=torch.float32, device="cuda")
+                 # test_background[3] = viewpoint_cam.altitude_bounds[0].item()
+                 nardir_cam = [c for c in scene.getTestCameras() if 'Nadir' in c.image_name]
+                 out = render_all_views(nardir_cam, gaussians, pipe, bg=test_background)

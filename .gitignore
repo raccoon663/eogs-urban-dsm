@@ -1,0 +1,35 @@
+# Data and generated models
+data/images/
+data/rpcs/
+data/truth/
+data/affine_models/
+data/ablation/
+output/
+outputs_5080/
+checkpoints/
+
+# Environments, builds, and caches
+.deps/
+.venv/
+venv/
+build/
+*.egg-info/
+__pycache__/
+*.py[cod]
+wandb/
+
+# Large and temporary artifacts
+*.zip
+*.ckpt
+*.pth
+*.pt
+*.iio
+*.tif
+*.tiff
+*.las
+*.laz
+*.npy
+*.npz
+*.log
+.DS_Store
+Thumbs.db
